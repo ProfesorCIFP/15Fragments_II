@@ -9,12 +9,12 @@
         android:name="com.example.a15fragments_ii.ListadoFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"/>
+        android:layout_weight="50"/>
 
     <fragment
         android:id="@+id/fragmentDetalle"
         android:name="com.example.a15fragments_ii.DetalleFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="70"/>
+        android:layout_weight="50"/>
 </LinearLayout>

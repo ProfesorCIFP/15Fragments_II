@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public class ListadoFragment extends Fragment {
 
     private ArrayList<Correo> listaCorreos;
     private ListView lvListado;
+    private CorreosListener listener;
 
     public ListadoFragment() {}
 
@@ -42,7 +44,25 @@ public class ListadoFragment extends Fragment {
         AdaptadorCorreos adaptadorCorreos = new AdaptadorCorreos(getContext(), listaCorreos);
 
         lvListado.setAdapter(adaptadorCorreos);
+
+        lvListado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int posicion, long l) {
+                if (listener != null) {
+                    listener.onCorreoListener((Correo)lvListado.getAdapter().getItem(posicion));
+                }
+            }
+        });
     }
+
+    public void setCorreoListener (CorreosListener listener) {
+        this.listener = listener;
+    }
+
+    public interface CorreosListener {
+        void onCorreoListener(Correo c);
+    }
+
 
     private ArrayList<Correo> creaListaCorreos () {
         ArrayList<Correo> listaCorreos;
